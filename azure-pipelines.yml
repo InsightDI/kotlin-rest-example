@@ -23,7 +23,9 @@ steps:
       tasks: 'build bootjar'
   - script: |
       mvn package
-      mvn -X package azure-webapp:deploy
+      rm ./target/*.jar
+      cp ./build/libs/*.jar ./target
+      mvn azure-webapp:deploy
     workingDirectory: '$(Build.SourcesDirectory)'
   - task: PublishPipelineArtifact@1
     inputs:
