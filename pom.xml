@@ -2,16 +2,6 @@
 
 <project xmlns="http://maven.apache.org/POM/4.0.0" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:schemaLocation="http://maven.apache.org/POM/4.0.0 http://maven.apache.org/xsd/maven-4.0.0.xsd">  
   <build>
-    <sourceDirectory>src/main/kotlin</sourceDirectory>
-    <resources>
-      <resource>
-        <directory>${basedir}/src/main/kotlin</directory>
-        <includes>
-          <include>**/*.xml</include>
-          <include>**/*.properties</include>
-        </includes>
-      </resource>
-    </resources>
     <plugins>
       <plugin> 
         <groupId>com.microsoft.azure</groupId>  
@@ -20,7 +10,7 @@
         <configuration>
           <schemaVersion>V2</schemaVersion>
           <resourceGroup>american-airlines-demo</resourceGroup>
-          <appName>american-airlines-demo</appName>
+          <appName>kotlin-rest-example</appName>
           <pricingTier>F1</pricingTier>
           <region>eastus</region>
           <runtime>
@@ -37,7 +27,7 @@
           <deployment>
             <resources>
               <resource>
-                <directory>${project.basedir}/target</directory>
+                <targetPath>${project.basedir}/build/libs</targetPath>
                 <includes>
                   <include>*.jar</include>
                 </includes>
@@ -55,7 +45,7 @@
   <packaging>jar</packaging>  
   <name>Maven Quick Start Archetype</name>  
   <url>http://maven.apache.org</url>  
-  <dependencies> 
+  <dependencies>
     <dependency> 
       <groupId>junit</groupId>  
       <artifactId>junit</artifactId>  
