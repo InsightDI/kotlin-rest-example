@@ -21,13 +21,13 @@ steps:
       publishJUnitResults: true
       testResultsFiles: '**/TEST-*.xml'
       tasks: 'build bootjar'
-  - script: |
-      sudo apt-get install tree
-      tree
-    workingDirectory: '$(Pipeline.Workspace)'
-#  - task: PublishPipelineArtifact@1
-#    inputs:
-#      targetPath: '$(Pipeline.Workspace)/build/libs'
-#      artifactName: 'kotlin-rest-api'
+#  - script: |
+#      sudo apt-get install tree
+#      tree
+#    workingDirectory: '$(Build.SourcesDirectory)'
+  - task: PublishPipelineArtifact@1
+    inputs:
+      targetPath: '$(Build.SourcesDirectory)/build/libs'
+      artifactName: 'kotlin-rest-api'
 #  - script: tree
-#    workingDirectory: '$(Pipeline.Workspace)'
+#    workingDirectory: '$(Build.SourcesDirectory)'
