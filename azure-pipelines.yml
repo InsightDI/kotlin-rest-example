@@ -21,7 +21,11 @@ steps:
       publishJUnitResults: true
       testResultsFiles: '**/TEST-*.xml'
       tasks: 'build bootjar'
-  - task: PublishPipelineArtifact@1
-    inputs:
-      targetPath: '$(Pipeline.Workspace)/build/libs'
-      artifactName: 'kotlin-rest-api'
+  - script: tree
+    workingDirectory: '$(Pipeline.Workspace)'
+#  - task: PublishPipelineArtifact@1
+#    inputs:
+#      targetPath: '$(Pipeline.Workspace)/build/libs'
+#      artifactName: 'kotlin-rest-api'
+#  - script: tree
+#    workingDirectory: '$(Pipeline.Workspace)'
