@@ -22,7 +22,7 @@ steps:
       testResultsFiles: '**/TEST-*.xml'
       tasks: 'build bootjar'
   - script: |
-      mvn package azure-webapp:deploy
+      mvn -X package azure-webapp:deploy
     workingDirectory: '$(Build.SourcesDirectory)'
   - task: PublishPipelineArtifact@1
     inputs:
