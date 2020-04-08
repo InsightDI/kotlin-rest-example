@@ -23,5 +23,5 @@ steps:
       tasks: 'build bootjar'
   - task: PublishPipelineArtifact@1
     inputs:
-    targetPath: '$(Pipeline.Workspace)/build/libs'
-    artifactName: 'kotlin-rest-api'
+      targetPath: '$(Pipeline.Workspace)/build/libs'
+      artifactName: 'kotlin-rest-api'
