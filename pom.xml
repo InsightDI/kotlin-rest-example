@@ -1,0 +1,55 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<project xmlns="http://maven.apache.org/POM/4.0.0" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:schemaLocation="http://maven.apache.org/POM/4.0.0 http://maven.apache.org/xsd/maven-4.0.0.xsd">  
+  <build>
+    <plugins>
+      <plugin> 
+        <groupId>com.microsoft.azure</groupId>  
+        <artifactId>azure-webapp-maven-plugin</artifactId>  
+        <version>1.9.0</version>  
+        <configuration>
+          <schemaVersion>V2</schemaVersion>
+          <resourceGroup>american-airlines-demo</resourceGroup>
+          <appName>kotlin-rest-example</appName>
+          <pricingTier>F1</pricingTier>
+          <region>eastus</region>
+          <runtime>
+            <os>linux</os>
+            <javaVersion>jre8</javaVersion>
+            <webContainer>jre8</webContainer>
+          </runtime>
+          <appSettings>
+            <property>
+              <name>JAVA_OPTS</name>
+              <value>-Dserver.port=80</value>
+            </property>
+          </appSettings>
+          <deployment>
+            <resources>
+              <resource>
+                <targetPath>${project.basedir}/build/libs</targetPath>
+                <includes>
+                  <include>*.jar</include>
+                </includes>
+              </resource>
+            </resources>
+          </deployment>
+        </configuration>
+      </plugin> 
+    </plugins> 
+  </build>  
+  <modelVersion>4.0.0</modelVersion>  
+  <groupId>com.insight.kotlin.example</groupId>
+  <artifactId>kotlin-rest-example</artifactId>
+  <packaging>jar</packaging>
+  <name>Maven Quick Start Archetype</name>  
+  <url>http://maven.apache.org</url>  
+  <dependencies>
+    <dependency> 
+      <groupId>junit</groupId>  
+      <artifactId>junit</artifactId>  
+      <version>4.8.2</version>  
+      <scope>test</scope> 
+    </dependency> 
+  </dependencies> 
+</project>
