@@ -20,12 +20,12 @@ steps:
       jdkArchitectureOption: 'x64'
       publishJUnitResults: true
       testResultsFiles: '**/TEST-*.xml'
-      tasks: 'build bootjar'
+      tasks: 'bootJar'
   - script: |
       mkdir target
-      mv ./build/libs/*.jar ./target
+      mv ./build/libs/*.jar ./target/app.jar
       sudo apt-get install tree
-      tree
+      tree ./target
       mvn azure-webapp:deploy -X -e
     workingDirectory: '$(Build.SourcesDirectory)'
   - task: PublishPipelineArtifact@1
