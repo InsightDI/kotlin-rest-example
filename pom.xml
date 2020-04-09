@@ -1,13 +1,17 @@
 <?xml version="1.0" encoding="UTF-8"?>
 
-<project xmlns="http://maven.apache.org/POM/4.0.0" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:schemaLocation="http://maven.apache.org/POM/4.0.0 http://maven.apache.org/xsd/maven-4.0.0.xsd">  
+<project xmlns="http://maven.apache.org/POM/4.0.0" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:schemaLocation="http://maven.apache.org/POM/4.0.0 http://maven.apache.org/xsd/maven-4.0.0.xsd">
   <build>
+    <sourceDirectory>${project.basedir}/src/main/kotlin/com/insight/kotlin/example</sourceDirectory>
     <plugins>
-      <plugin> 
+      <plugin>
         <groupId>com.microsoft.azure</groupId>  
         <artifactId>azure-webapp-maven-plugin</artifactId>  
         <version>1.9.0</version>  
         <configuration>
+          <authentication>
+            <serverId>azure-auth</serverId>
+          </authentication>
           <schemaVersion>V2</schemaVersion>
           <resourceGroup>american-airlines-demo</resourceGroup>
           <appName>kotlin-rest-example</appName>
@@ -16,31 +20,46 @@
           <runtime>
             <os>linux</os>
             <javaVersion>jre8</javaVersion>
-            <webContainer>jre8</webContainer>
           </runtime>
           <appSettings>
             <property>
               <name>JAVA_OPTS</name>
-              <value>-Dserver.port=80</value>
+              <value>-Dserver.port=8080</value>
             </property>
           </appSettings>
           <deployment>
             <resources>
               <resource>
-                <targetPath>${project.basedir}/build/libs</targetPath>
+                <directory>${project.basedir}/target</directory>
                 <includes>
                   <include>*.jar</include>
                 </includes>
               </resource>
             </resources>
           </deployment>
+          <stopAppDuringDeployment>true</stopAppDuringDeployment>
         </configuration>
-      </plugin> 
-    </plugins> 
+      </plugin>
+      <plugin>
+        <groupId>org.springframework.boot</groupId>
+        <artifactId>spring-boot-maven-plugin</artifactId>
+        <version>2.2.6.RELEASE</version>
+        <configuration>
+          <layout>JAR</layout>
+        </configuration>
+        <executions>
+          <execution>
+            <goals>
+              <goal>repackage</goal>
+            </goals>
+          </execution>
+        </executions>
+      </plugin>
+    </plugins>
   </build>  
-  <modelVersion>4.0.0</modelVersion>  
-  <groupId>com.insight.kotlin.example</groupId>
-  <artifactId>kotlin-rest-example</artifactId>
+  <modelVersion>4.0.0</modelVersion>
+  <groupId>com.insight.kotlin</groupId>
+  <artifactId>example</artifactId>
   <version>1.0</version>
   <packaging>jar</packaging>
   <name>Maven Quick Start Archetype</name>  
@@ -51,6 +70,6 @@
       <artifactId>junit</artifactId>  
       <version>4.8.2</version>  
       <scope>test</scope> 
-    </dependency> 
-  </dependencies> 
+    </dependency>
+  </dependencies>
 </project>
