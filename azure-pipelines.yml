@@ -21,9 +21,18 @@ steps:
       publishJUnitResults: true
       testResultsFiles: '**/TEST-*.xml'
       tasks: 'bootJar'
-  - script: |
-      mvn azure-webapp:deploy -X -e
-    workingDirectory: '$(Build.SourcesDirectory)'
+  # - script: |
+  #     mvn azure-webapp:deploy -X -e
+  #   workingDirectory: '$(Build.SourcesDirectory)'
+  - task: AzureRmWebAppDeployment@4
+    inputs:
+      ConnectionType: 'AzureRM'
+      azureSubscription: 'american-airlines-demo'
+      appType: 'webAppLinux'
+      WebAppName: 'kotlin-rest-example'
+      deployToSlotOrASE: false
+      packageForLinux: '$(System.DefaultWorkingDirectory)/build/libs/*.jar'
+      RuntimeStack: 'JAVA|8-jre8'
   - task: PublishPipelineArtifact@1
     inputs:
       targetPath: '$(Build.SourcesDirectory)/build/libs'
