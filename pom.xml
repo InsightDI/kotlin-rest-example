@@ -9,9 +9,6 @@
         <artifactId>azure-webapp-maven-plugin</artifactId>  
         <version>1.9.0</version>  
         <configuration>
-          <authentication>
-            <serverId>azure-auth</serverId>
-          </authentication>
           <schemaVersion>V2</schemaVersion>
           <resourceGroup>american-airlines-demo</resourceGroup>
           <appName>kotlin-rest-example</appName>
