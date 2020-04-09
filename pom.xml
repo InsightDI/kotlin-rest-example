@@ -27,9 +27,9 @@
           <deployment>
             <resources>
               <resource>
-                <directory>build\libs</directory>
+                <directory>build/libs</directory>
                 <includes>
-                  <include>**\*.jar</include>
+                  <include>**/*.jar</include>
                 </includes>
               </resource>
             </resources>
