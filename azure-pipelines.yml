@@ -22,6 +22,8 @@ steps:
       testResultsFiles: '**/TEST-*.xml'
       tasks: 'build bootjar'
   - script: |
+      mkdir target
+      mv ./build/libs/*.jar ./target
       mvn azure-webapp:deploy
     workingDirectory: '$(Build.SourcesDirectory)'
   - task: PublishPipelineArtifact@1
