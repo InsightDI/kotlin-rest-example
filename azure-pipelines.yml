@@ -22,10 +22,6 @@ steps:
       testResultsFiles: '**/TEST-*.xml'
       tasks: 'bootJar'
   - script: |
-      mkdir target
-      mv ./build/libs/*.jar ./target/app.jar
-      sudo apt-get install tree
-      tree ./target
       mvn azure-webapp:deploy -X -e
     workingDirectory: '$(Build.SourcesDirectory)'
   - task: PublishPipelineArtifact@1
