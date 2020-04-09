@@ -40,9 +40,8 @@
   </build>  
   <modelVersion>4.0.0</modelVersion>  
   <groupId>com.insight.kotlin.example</groupId>
-  <artifactId>american-airlines-demo</artifactId>
-  <version>1.0</version>  
-  <packaging>jar</packaging>  
+  <artifactId>kotlin-rest-example</artifactId>
+  <packaging>jar</packaging>
   <name>Maven Quick Start Archetype</name>  
   <url>http://maven.apache.org</url>  
   <dependencies>
