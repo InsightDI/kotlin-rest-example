@@ -37,7 +37,7 @@ steps:
       appName: 'kotlin-rest-example'
       package: '$(Build.SourcesDirectory)/build/libs/*.jar'
       runtimeStack: 'JAVA|8-jre8'
-  - task: PublishPipelineArtifact@1
-    inputs:
-      targetPath: '$(Build.SourcesDirectory)/build/libs/*.jar'
-      artifactName: 'kotlin-rest-api'
+#  - task: PublishPipelineArtifact@1
+#    inputs:
+#      targetPath: '$(Build.SourcesDirectory)/build/libs/*.jar'
+#      artifactName: 'kotlin-rest-api'
