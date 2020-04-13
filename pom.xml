@@ -1,8 +1,24 @@
 <?xml version="1.0" encoding="UTF-8"?>
 
 <project xmlns="http://maven.apache.org/POM/4.0.0" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:schemaLocation="http://maven.apache.org/POM/4.0.0 http://maven.apache.org/xsd/maven-4.0.0.xsd">
+  <modelVersion>4.0.0</modelVersion>
+  <groupId>com.insight.kotlin</groupId>
+  <artifactId>example</artifactId>
+  <version>1.0</version>
+  <packaging>jar</packaging>
+  <name>Maven Quick Start Archetype</name>
+  <url>http://maven.apache.org</url>
+  <dependencies>
+    <dependency>
+      <groupId>junit</groupId>
+      <artifactId>junit</artifactId>
+      <version>4.8.2</version>
+      <scope>test</scope>
+    </dependency>
+  </dependencies>
   <build>
     <sourceDirectory>${project.basedir}/src/main/kotlin/com/insight/kotlin/example</sourceDirectory>
+    <testSourceDirectory>${project.basedir}/src/test/kotlin/com/insight/kotlin/example</testSourceDirectory>
     <plugins>
       <plugin>
         <groupId>com.microsoft.azure</groupId>  
@@ -21,7 +37,7 @@
           <appSettings>
             <property>
               <name>JAVA_OPTS</name>
-              <value>-Dserver.port=8080</value>
+              <value>-Dserver.port=80</value>
             </property>
           </appSettings>
           <deployment>
@@ -39,19 +55,4 @@
       </plugin>
     </plugins>
   </build>  
-  <modelVersion>4.0.0</modelVersion>
-  <groupId>com.insight.kotlin</groupId>
-  <artifactId>example</artifactId>
-  <version>1.0</version>
-  <packaging>jar</packaging>
-  <name>Maven Quick Start Archetype</name>  
-  <url>http://maven.apache.org</url>  
-  <dependencies>
-    <dependency> 
-      <groupId>junit</groupId>  
-      <artifactId>junit</artifactId>  
-      <version>4.8.2</version>  
-      <scope>test</scope> 
-    </dependency>
-  </dependencies>
 </project>
