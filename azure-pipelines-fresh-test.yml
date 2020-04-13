@@ -20,16 +20,20 @@ steps:
       publishJUnitResults: true
       testResultsFiles: '**/TEST-*.xml'
       tasks: 'bootJar'
-  - task: AzureRmWebAppDeployment@4
+  - task: ArchiveFiles@2
     inputs:
-      ConnectionType: 'AzureRM'
-      azureSubscription: 'azdo-service-connection'
-      appType: 'webAppLinux'
-      WebAppName: 'fresh-test'
-      deployToSlotOrASE: false
-      packageForLinux: '$(System.DefaultWorkingDirectory)/build/libs/*.jar'
-      RuntimeStack: 'JAVA|8-jre8'
-  - task: PublishPipelineArtifact@1
+      rootFolderOrFile: '$(System.DefaultWorkingDirectory)/build/libs/kotlin-rest-example.jar'
+      includeRootFolder: false
+      archiveType: 'zip'
+      archiveFile: '$(System.DefaultWorkingDirectory)/$(Build.BuildId).zip'
+      replaceExistingArchive: true
+  - script: |
+      sudo apt-get install tree
+      tree
+    workingDirectory: '$(System.DefaultWorkingDirectory)'
+  - task: AzureCLI@2
     inputs:
-      targetPath: '$(Build.SourcesDirectory)/build/libs'
-      artifactName: 'kotlin-rest-api'
+      azureSubscription: 'Visual Studio Enterprise Subscription (fc099a2b-6d5f-40bb-a8da-c87f37d942f9)'
+      scriptType: 'bash'
+      scriptLocation: 'inlineScript'
+      inlineScript: 'az webapp deployment source config-zip --resource-group american-airlines-demo --name fresh-test --src $(System.DefaultWorkingDirectory)/$(Build.BuildId).zip'
