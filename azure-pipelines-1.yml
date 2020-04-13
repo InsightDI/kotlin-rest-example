@@ -21,6 +21,15 @@ steps:
       publishJUnitResults: true
       testResultsFiles: '**/TEST-*.xml'
       tasks: 'bootJar'
+  - script: |
+      jar i ./kotlin-rest-example.jar
+      jar xvf ./kotlin-rest-example.jar
+      rm ./kotlin-rest-example.jar
+      jar cvfm0 kotlin-rest-example.jar ./META-INF/MANIFEST.MF
+      jar tvf kotlin-rest-example.jar
+    displayName: Prepare Gradle Spring Boot Jar for MS Maven Deploy
+    name: gradle_Spring_Boot_Transform_To_Maven_Jar
+    workingDirectory: '$(Build.SourcesDirectory)/build/libs'
   - task: ArchiveFiles@2
     inputs:
       rootFolderOrFile: '$(System.DefaultWorkingDirectory)/build/libs/kotlin-rest-example.jar'
