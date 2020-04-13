@@ -30,16 +30,16 @@ steps:
     displayName: Prepare Gradle Spring Boot Jar for MS Maven Deploy
     name: gradle_Spring_Boot_Transform_To_Maven_Jar
     workingDirectory: '$(Build.SourcesDirectory)/build/libs'
-#  - task: AzureRmWebAppDeployment@4
-#    inputs:
-#      ConnectionType: 'AzureRM'
-#      azureSubscription: 'azdo-service-connection'
-#      appType: 'webAppLinux'
-#      WebAppName: 'kotlin-rest-example'
-#      deployToSlotOrASE: false
-#      packageForLinux: '$(System.DefaultWorkingDirectory)/build/libs/*.jar'
-#      RuntimeStack: 'JAVA|8-jre8'
+  - task: AzureRmWebAppDeployment@4
+    inputs:
+      ConnectionType: 'AzureRM'
+      azureSubscription: 'azdo-service-connection'
+      appType: 'webAppLinux'
+      WebAppName: 'kotlin-rest-example'
+      deployToSlotOrASE: false
+      packageForLinux: '$(System.DefaultWorkingDirectory)/build/libs/*.jar'
+      RuntimeStack: 'JAVA|8-jre8'
 #  - task: PublishPipelineArtifact@1
 #    inputs:
-#      targetPath: '$(Build.SourcesDirectory)/build/libs'
+#      targetPath: '$(Build.SourcesDirectory)/build/libs/*.jar'
 #      artifactName: 'kotlin-rest-api'
