@@ -35,6 +35,7 @@ steps:
   - task: AzureCLI@2
     inputs:
       azureSubscription: 'Visual Studio Enterprise Subscription (fc099a2b-6d5f-40bb-a8da-c87f37d942f9)'
-      scriptType: 'bash/pscore'
-      scriptLocation: 'inlineScript'
-      inlineScript: 'az webapp deployment source config-zip --resource-group american-airlines-demo --name kotlin-example-zip --src $(System.DefaultWorkingDirectory)/$(Build.BuildId).zip'
+      scriptType: pscore
+      scriptLocation: inlineScript
+      inlineScript: |
+        az webapp deployment source config-zip -g american-airlines-demo -n kotlin-example-zip --src $(System.DefaultWorkingDirectory)/$(Build.BuildId).zip
