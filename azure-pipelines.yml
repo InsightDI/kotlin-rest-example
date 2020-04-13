@@ -21,9 +21,9 @@ steps:
       publishJUnitResults: true
       testResultsFiles: '**/TEST-*.xml'
       tasks: 'bootJar'
-   - script: |
-       jar xvf ./kotlin-rest-example.jar
-     workingDirectory: '$(Build.SourcesDirectory)/build/libs'
+  - script: |
+     jar xvf ./kotlin-rest-example.jar
+   workingDirectory: '$(Build.SourcesDirectory)/build/libs'
 #  - task: AzureRmWebAppDeployment@4
 #    inputs:
 #      ConnectionType: 'AzureRM'
