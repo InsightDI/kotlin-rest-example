@@ -29,6 +29,7 @@ steps:
       archiveFile: '$(System.DefaultWorkingDirectory)/$(Build.BuildId).zip' 
       replaceExistingArchive: true
   - script: |
+      sudo apt-get install tree
       tree
     workingDirectory: '$(System.DefaultWorkingDirectory)'
 #  - task: AzureCLI@2
