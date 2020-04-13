@@ -33,7 +33,7 @@ steps:
   - task: AzureRmWebAppDeployment@4
     inputs:
       ConnectionType: 'AzureRM'
-      azureSubscription: 'American-Service-Connection'
+      azureSubscription: 'Visual Studio Enterprise Subscription (fc099a2b-6d5f-40bb-a8da-c87f37d942f9)'
       appType: 'webAppLinux'
       WebAppName: 'kotlin-rest-example'
       deployToSlotOrASE: false
