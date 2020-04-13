@@ -28,7 +28,7 @@ steps:
       jar cvfm0 kotlin-rest-example.jar ./META-INF/MANIFEST.MF
       jar tvf kotline-rest-example.jar
     displayName: Prepare Gradle Spring Boot Jar for MS Maven Deploy
-    name: gradle-spring-boot-transform-to-maven-jar
+    name: gradle_Spring_Boot_Transform_To_Maven_Jar
     workingDirectory: '$(Build.SourcesDirectory)/build/libs'
 #  - task: AzureRmWebAppDeployment@4
 #    inputs:
