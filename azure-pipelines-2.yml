@@ -30,6 +30,6 @@ steps:
     replaceExistingArchive: true
 - task: PublishBuildArtifacts@1
   inputs:
-    PathtoPublish: $(System.DefaultWorkingDirectory)/$(Build.BuildId).zip'
+    PathtoPublish: $(System.DefaultWorkingDirectory)'
     ArtifactName: 'drop'
     publishLocation: 'Container'
