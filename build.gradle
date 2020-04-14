@@ -26,6 +26,10 @@ repositories {
     jcenter()
 }
 
+bootJar {
+    archiveFileName = "app.${archiveExtension.get()}"
+}
+
 dependencies {
     compile "org.jetbrains.kotlin:kotlin-stdlib:$kotlin_version" // Required for Kotlin integration
     compile "org.springframework.boot:spring-boot-starter-web"
