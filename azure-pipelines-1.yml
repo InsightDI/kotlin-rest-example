@@ -27,6 +27,7 @@ steps:
       rm ./kotlin-rest-example.jar
 #      jar cvfm0 kotlin-rest-example.jar ./META-INF/MANIFEST.MF
 #      jar tvf kotlin-rest-example.jar
+      ls -l
     displayName: Prepare Gradle Spring Boot Jar for MS Maven Deploy
     name: gradle_Spring_Boot_Transform_To_Maven_Jar
     workingDirectory: '$(Build.SourcesDirectory)/build/libs'
@@ -47,4 +48,4 @@ steps:
       scriptType: pscore
       scriptLocation: inlineScript
       inlineScript: |
-        az webapp deployment source config-zip -g american-airlines-demo -n kotlin-example-zip --src $(System.DefaultWorkingDirectory)/build/libs/kotlin-rest-example.jar
+        az webapp deployment source config-zip -g american-airlines-demo -n kotlin-example-zip --src $(System.DefaultWorkingDirectory)/build/libs/*.zip
