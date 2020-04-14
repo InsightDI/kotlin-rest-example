@@ -21,11 +21,11 @@ steps:
       publishJUnitResults: true
       testResultsFiles: '**/TEST-*.xml'
       tasks: 'bootJar'
-#  - script: |
-#      mv ./kotlin-rest-example.jar ./app.jar
-#    displayName: Rename jar for execution
-#    name: rename_jar_for_execution
-#    workingDirectory: '$(Build.SourcesDirectory)/build/libs'
+  - script: |
+      mv ./kotlin-rest-example.jar ./app.jar
+    displayName: Rename jar for execution
+    name: rename_jar_for_execution
+    workingDirectory: '$(Build.SourcesDirectory)/build/libs'
   - task: ArchiveFiles@2
     inputs:
       rootFolderOrFile: '$(System.DefaultWorkingDirectory)/build/libs'
