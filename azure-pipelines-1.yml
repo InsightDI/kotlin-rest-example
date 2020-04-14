@@ -22,7 +22,6 @@ steps:
       testResultsFiles: '**/TEST-*.xml'
       tasks: 'bootJar'
   - script: |
-      jar i ./kotlin-rest-example.jar
       jar xvf ./kotlin-rest-example.jar
       mv ./kotlin-rest-example.jar ./app.jar
       rm -r META-INF
@@ -50,3 +49,4 @@ steps:
         az webapp deployment source config-zip -g american-airlines-demo -n kotlin-example-zip --src $(System.DefaultWorkingDirectory)/$(Build.BuildId).zip
 #      jar cvfm0 kotlin-rest-example.jar ./META-INF/MANIFEST.MF
 #      jar tvf kotlin-rest-example.jar
+#      jar i ./kotlin-rest-example.jar
