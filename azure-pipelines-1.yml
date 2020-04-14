@@ -3,8 +3,8 @@
 # Add steps that build, run tests, deploy, and more:
 # https://aka.ms/yaml
 
-trigger:
-- master
+trigger: none
+#- master
 
 pool:
   vmImage: 'ubuntu-latest'
@@ -21,16 +21,30 @@ steps:
       publishJUnitResults: true
       testResultsFiles: '**/TEST-*.xml'
       tasks: 'bootJar'
+  - script: |
+      jar i ./kotlin-rest-example.jar
+      jar xvf ./kotlin-rest-example.jar
+      rm ./kotlin-rest-example.jar
+    displayName: Prepare Gradle Spring Boot Jar for MS Maven Deploy
+    name: gradle_Spring_Boot_Transform_To_Maven_Jar
+    workingDirectory: '$(Build.SourcesDirectory)/build/libs'
   - task: ArchiveFiles@2
     inputs:
-      rootFolderOrFile: '$(System.DefaultWorkingDirectory)/build/libs/bootJar.jar'
+      rootFolderOrFile: '$(System.DefaultWorkingDirectory)/build/libs'
       includeRootFolder: false
       archiveType: 'zip'
-      archiveFile: '$(System.DefaultWorkingDirectory)/$(Build.BuildId).zip' 
+      archiveFile: '$(System.DefaultWorkingDirectory)/$(Build.BuildId).zip'
       replaceExistingArchive: true
+  #  - script: |
+  #      sudo apt-get install tree
+  #      tree
+  #    workingDirectory: '$(System.DefaultWorkingDirectory)'
   - task: AzureCLI@2
     inputs:
-      azureSubscription: 'American-Service-Connection'
-      scriptType: 'bash'
-      scriptLocation: 'inlineScript'
-      inlineScript: 'az webapp deployment source config-zip --resource-group american-airlines-demo --name kotlin-example-zip --src > $(Build.BuildId).zip'
+      azureSubscription: 'Visual Studio Enterprise Subscription (fc099a2b-6d5f-40bb-a8da-c87f37d942f9)'
+      scriptType: pscore
+      scriptLocation: inlineScript
+      inlineScript: |
+        az webapp deployment source config-zip -g american-airlines-demo -n kotlin-example-zip --src $(System.DefaultWorkingDirectory)/$(Build.BuildId).zip
+#      jar cvfm0 kotlin-rest-example.jar ./META-INF/MANIFEST.MF
+#      jar tvf kotlin-rest-example.jar
