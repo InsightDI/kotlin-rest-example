@@ -23,7 +23,7 @@ steps:
     tasks: 'bootJar'
 - task: ArchiveFiles@2
   inputs:
-    rootFolderOrFile: '$(System.DefaultWorkingDirectory)/build/libs/kotlin-rest-example.jar'
+    rootFolderOrFile: '$(System.DefaultWorkingDirectory)/build/libs/app.jar'
     includeRootFolder: false
     archiveType: 'zip'
     archiveFile: '$(System.DefaultWorkingDirectory)/$(Build.BuildId).zip' 
