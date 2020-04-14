@@ -46,6 +46,6 @@ steps:
       scriptType: pscore
       scriptLocation: inlineScript
       inlineScript: |
-        az webapp deployment source config-zip -g american-airlines-demo -n kotlin-example-zip --src $(System.DefaultWorkingDirectory)/build/libs/*.zip
+        az webapp deployment source config-zip -g american-airlines-demo -n kotlin-example-zip --src $(System.DefaultWorkingDirectory)/build/libs/$(Build.BuildId).zip
 #      jar cvfm0 kotlin-rest-example.jar ./META-INF/MANIFEST.MF
 #      jar tvf kotlin-rest-example.jar
