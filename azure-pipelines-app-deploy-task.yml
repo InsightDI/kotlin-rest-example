@@ -3,8 +3,13 @@
 # Add steps that build, run tests, deploy, and more:
 # https://aka.ms/yaml
 
+<<<<<<< HEAD:azure-pipelines-1.yml
 trigger: none
 #- master
+=======
+trigger:
+- app-jar-naming
+>>>>>>> kotlin-slot-scaling-example:azure-pipelines-app-deploy-task.yml
 
 pool:
   vmImage: 'ubuntu-latest'
@@ -33,10 +38,19 @@ steps:
       archiveType: 'zip'
       archiveFile: '$(System.DefaultWorkingDirectory)/$(Build.BuildId).zip'
       replaceExistingArchive: true
-  - task: AzureCLI@2
+  - task: AzureRmWebAppDeployment@4
     inputs:
+<<<<<<< HEAD:azure-pipelines-1.yml
       azureSubscription: 'Visual Studio Enterprise Subscription (fc099a2b-6d5f-40bb-a8da-c87f37d942f9)'
       scriptType: pscore
       scriptLocation: inlineScript
       inlineScript: |
         az webapp deployment source config-zip -g american-airlines-demo -n kotlin-example-zip --src $(System.DefaultWorkingDirectory)/$(Build.BuildId).zip
+=======
+      ConnectionType: 'AzureRM'
+      azureSubscription: 'Visual Studio Enterprise Subscription (fc099a2b-6d5f-40bb-a8da-c87f37d942f9)'
+      appType: 'webAppLinux'
+      WebAppName: 'kotlin-rest-example-paid'
+      packageForLinux: '$(System.DefaultWorkingDirectory)/*.zip'
+      RuntimeStack: 'JAVA|8-jre8'
+>>>>>>> kotlin-slot-scaling-example:azure-pipelines-app-deploy-task.yml

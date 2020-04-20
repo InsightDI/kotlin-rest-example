@@ -1,0 +1,49 @@
+# Starter pipeline
+# Start with a minimal pipeline that you can customize to build and deploy your code.
+# Add steps that build, run tests, deploy, and more:
+# https://aka.ms/yaml
+
+trigger:
+  - master
+
+pool:
+  vmImage: 'ubuntu-latest'
+
+steps:
+  - task: Gradle@2
+    inputs:
+      workingDirectory: ''
+      gradleWrapperFile: 'gradlew'
+      gradleOptions: '-Xmx3072m'
+      javaHomeOption: 'JDKVersion'
+      jdkVersionOption: '1.8'
+      jdkArchitectureOption: 'x64'
+      publishJUnitResults: true
+      testResultsFiles: '**/TEST-*.xml'
+      tasks: 'bootJar'
+  - task: ArchiveFiles@2
+    inputs:
+      rootFolderOrFile: '$(System.DefaultWorkingDirectory)/build/libs/kotlin-rest-example.jar'
+      includeRootFolder: false
+      archiveType: 'zip'
+      archiveFile: '$(System.DefaultWorkingDirectory)/$(Build.BuildId).zip'
+      replaceExistingArchive: true
+  - task: PublishBuildArtifacts@1
+    inputs:
+      PathtoPublish: '$(System.DefaultWorkingDirectory)/$(Build.BuildId).zip'
+      ArtifactName: 'drop'
+      publishLocation: 'Container'
+  - script: |
+      jar i ./kotlin-rest-example.jar
+      jar xvf ./kotlin-rest-example.jar
+      rm ./kotlin-rest-example.jar
+      jar cvfm0 kotlin-rest-example.jar ./META-INF/MANIFEST.MF
+      jar tvf kotlin-rest-example.jar
+    displayName: Prepare Gradle Spring Boot Jar for MS Maven Deploy
+    name: gradle_Spring_Boot_Transform_To_Maven_Jar
+    workingDirectory: '$(Build.SourcesDirectory)/build/libs'
+  - script: |
+      mvn azure-webapp:deploy
+    displayName: Deploy Maven App
+    name: Deploy_Maven_App
+    workingDirectory: '$(Build.SourcesDirectory)'
